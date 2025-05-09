@@ -20,33 +20,34 @@ export default function Page() {
     const [result, setResult] = useState(null);
     const [chartData, setChartData] = useState([]);
 
-    const calculateEmi = async () => {
-        try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_DATA_API}/api/calculators/emi-calculator?loanAmount=${loanAmount}&loanTenure=${loanTenure}&interestRate=${interestRate}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
-            if (res.status === 200) {
-                const data = res.data
-                const principal = data.principal;
-                const totalInterestPaid = data.totalInterestPaid;
-                const yearlyData = data.yearlyData;
-                const emiCalculated = data.emiCalculated;
-                const totalPayment = data.totalPayment;
-                setResult({
-                    principalamount: Math.round(principal),
-                    intrestamount: Math.round(totalInterestPaid),
-                });
-                setChartData(yearlyData);
-                setEmi(Math.round(emiCalculated));
-                setTotalAmountPayable(Math.round(totalPayment));
-                setTotalInterest(Math.round(totalInterestPaid));
-            }
-        }
-        catch (error) {
-            console.log(error)
-        }
 
-    };
 
     useEffect(() => {
+        const calculateEmi = async () => {
+            try {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_DATA_API}/api/calculators/emi-calculator?loanAmount=${loanAmount}&loanTenure=${loanTenure}&interestRate=${interestRate}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
+                if (res.status === 200) {
+                    const data = res.data
+                    const principal = data.principal;
+                    const totalInterestPaid = data.totalInterestPaid;
+                    const yearlyData = data.yearlyData;
+                    const emiCalculated = data.emiCalculated;
+                    const totalPayment = data.totalPayment;
+                    setResult({
+                        principalamount: Math.round(principal),
+                        intrestamount: Math.round(totalInterestPaid),
+                    });
+                    setChartData(yearlyData);
+                    setEmi(Math.round(emiCalculated));
+                    setTotalAmountPayable(Math.round(totalPayment));
+                    setTotalInterest(Math.round(totalInterestPaid));
+                }
+            }
+            catch (error) {
+                console.log(error)
+            }
+
+        };
         calculateEmi();
     }, [loanAmount, loanTenure, interestRate]);
     const handleCalculatorChange = (e) => {
@@ -57,8 +58,9 @@ export default function Page() {
     };
 
     return (
-        <div className="lg:px-40 px-10 py-10">
-            <div className="mb-5 flex justify-between">
+        <div  className="max-w-screen-xl mx-auto py-[30px] lg:py-[60px]">
+        <div className="">
+            <div className="mb-5 flex flex-col md:flex-row gap-5 justify-between">
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>
@@ -97,7 +99,7 @@ export default function Page() {
                 </div>
             </div>
             <div className="mb-10">
-                <h1 className="text-4xl font-bold text-gray-800">
+                <h1 className=" text-3xl md:text-4xl font-bold text-gray-800">
                     EMI Calculator
                 </h1>
             </div>
@@ -199,6 +201,7 @@ export default function Page() {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 }

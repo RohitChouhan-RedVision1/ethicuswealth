@@ -59,7 +59,8 @@ export default function Page() {
     };
 
     return (
-        <div className="bg-white text-gray-900 md:px-40 px-3 py-10">
+        <div className="max-w-screen-xl mx-auto">
+            <div className="bg-white text-gray-900  py-10">
             <div>
                 {loading ? (
                     <Loader />
@@ -189,6 +190,7 @@ export default function Page() {
                     </div>
                 )}
             </div>
+        </div>
         </div>
     );
 }

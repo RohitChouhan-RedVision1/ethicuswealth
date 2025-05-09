@@ -115,7 +115,15 @@ export default function MarketUpdate() {
     setFilteredSchemes(filtered);
   };
   return (
-    <div className="lg:px-40 px-10 py-36">
+    <div className="">
+      <div className="flex bg-center bg-no-repeat bg-cover bg-[url('/images/pay-premium/pay-premium.webp')] bg-gray-500 overflow-hidden text-start justify-start items-center h-64">
+        <div className="max-w-screen-xl mx-auto">
+          <h1 className="text-gray-900 text-3xl md:text-5xl font-bold">
+          Fund Performance
+          </h1>
+        </div>
+      </div>
+      <div className="max-w-screen-xl mx-auto py-[30px] md:py-[60px]">
       {pageloading ? (
         <PageLoading />
       ) : (
@@ -132,10 +140,10 @@ export default function MarketUpdate() {
                 onClick={() => handleCategorySelect(item)}
               >
                 <Image
-                  src={`/images/${item}.svg`}
+                  src={`/mf-adda/${item}.svg`}
                   width={70}
                   height={70}
-                  className="mb-5 text-teal-500"
+                  className="mb-5 text-teal-500 "
                   alt=""
                 />
                 <h1 className="font-bold text-gray-700 text-2xl text-center uppercase">
@@ -220,6 +228,7 @@ export default function MarketUpdate() {
           </div>
         </>
       )}
+    </div>
     </div>
   );
 }

@@ -107,7 +107,7 @@ export function Navbar({ services }) {
   };
   return (
     <div
-      className={`top-0 z-[999] transition-all duration-300 ${
+      className={`top-0 z-20  transition-all duration-300 ${
         isSticky ? "sticky bg-white py-1" : "relative bg-white"
       }`}
     >
@@ -115,7 +115,7 @@ export function Navbar({ services }) {
         <div className="">
           <Image src="/logo.webp" alt="logo" width={120} height={100} />
         </div>
-        <div className="flex-1 max-w-4xl hidden lg:block mx-auto z-50">
+        <div className="flex-1 max-w-4xl hidden lg:block mx-auto ">
           {isSearchOpen ? (
             <div
               className="relative rounded-full border-2 bg-[var(--rv-white)] border-gray-300 shadow-input flex justify-center"
@@ -150,7 +150,7 @@ export function Navbar({ services }) {
                 </button>
               </div>
               {isSearchOpen && searchResults.length > 0 && (
-                <div className="absolute left-28 top-full mt-2 bg-white z-10 rounded-lg shadow-lg w-full md:w-64 lg:w-96 max-h-60 overflow-y-auto ring-1 ring-gray-300">
+                <div className="absolute left-28 top-full mt-2 bg-white  rounded-lg shadow-lg w-full md:w-64 lg:w-96 max-h-60 overflow-y-auto ring-1 ring-gray-300">
                   <ul className="py-2 text-sm">
                     {searchResults.map((result, index) => (
                       <li key={index}>

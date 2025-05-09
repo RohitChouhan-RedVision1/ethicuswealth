@@ -1,6 +1,8 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
+import "chart.js/auto";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -15,9 +17,23 @@ import { Toaster } from "@/components/ui/toaster";
 import { FaFilePdf } from "react-icons/fa6";
 // import SipPerformanceTable from "@/components/SipPerformanceTable";
 import { generatePDF } from "@/lib/generatePdf";
+import {
+    Form, FormControl, FormField, FormItem, FormMessage
+} from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "@/components/ui/input";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import { Label } from "@radix-ui/react-label";
 import { SchemePerformanceChart } from "@/components/charts/schemePerformanceChart";
 
 export default function Page() {
@@ -270,48 +286,35 @@ export default function Page() {
     };
 
     return (
-        <div className="lg:px-40 md:px-20 px-3 py-36">
+        <div className="container mx-auto main_section">
+             <div className="flex bg-center bg-no-repeat bg-cover bg-[url('/images/pay-premium/pay-premium.webp')] bg-gray-500 overflow-hidden text-start justify-start items-center h-64">
+        <div className="max-w-screen-xl mx-auto">
+          <h1 className="text-gray-900 text-3xl md:text-5xl font-bold">
+          Scheme Performance
+          </h1>
+        </div>
+      </div>
+            <div className=" max-w-screen-xl mx-auto py-[30px] md:py-[60px]  ">
             <Toaster />
-            <div className="mb-5">
-                <Breadcrumb>
-                    <BreadcrumbList>
-                        <BreadcrumbItem>
-                            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <BreadcrumbSeparator />
-                        <BreadcrumbItem>
-                            <BreadcrumbLink href="/tools/calculators">Performance</BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <BreadcrumbSeparator />
-                        <BreadcrumbItem>
-                            <BreadcrumbPage>Scheme Performance</BreadcrumbPage>
-                        </BreadcrumbItem>
-                    </BreadcrumbList>
-                </Breadcrumb>
-            </div>
+         
             <div>
                 <div>
-                    <div className="mb-10">
-                        <h1 className="text-4xl font-bold text-gray-800">
-                            Scheme Performance
-                        </h1>
-                    </div>
                     <div className='col-span-1 border border-gray-200 rounded-2xl bg-white p-2 mb-3'>
                         <div className="Scheme-calculator container mx-auto p-3 sticky top-0 z-10">
                             {/* Investment Type Toggle */}
                             <div className="flex space-x-4 mb-8">
                                 <Button
                                     onClick={() => (setIsMonthlyScheme(true), setSchemesData([]), setGraphData(false))}
-                                    className={`text-sm rounded-full ${isMonthlyScheme ? "bg-[#0E314D] text-white"
-                                        : "bg-[var(--rv-bg-primary)] text-gray-800"
+                                    className={`text-sm rounded-full hover:bg-[var(--rv-primary)] ${isMonthlyScheme ? "bg-[var(--rv-secondary)] text-white"
+                                        : "bg-[var(--rv-primary)] text-white"
                                     }`}
                                 >
                                     Fund House
                                 </Button>
                                 <Button
                                     onClick={() => (setIsMonthlyScheme(false), setSchemesData([]), setGraphData(false))}
-                                    className={`text-sm rounded-full ${!isMonthlyScheme ? "bg-[#0E314D] text-white"
-                                        : "bg-[var(--rv-bg-primary)] text-gray-800"
+                                    className={`text-sm rounded-full hover:bg-[var(--rv-primary)] ${!isMonthlyScheme ? "bg-[var(--rv-secondary)] text-white"
+                                        : "bg-[var(--rv-primary)] text-white"
                                     }`}
                                 >
                                     Asset Category
@@ -346,7 +349,7 @@ export default function Page() {
                                         </div>
                                     </div>
                                 ) : (
-                                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-4 gap-y-4">
+                                    <div className="grid grid-cols-1 md:grid-cols-2  gap-x-4 gap-y-4">
                                         <div>
                                             <h1 className="font-semibold text-gray-700">Select Equity Funds</h1>
                                             <div className="max-w-lg mt-2 border border-gray-300 p-3 rounded h-60 overflow-y-auto">
@@ -517,7 +520,7 @@ export default function Page() {
                                     <label htmlFor="schemeDate" className="text-sm block font-semibold text-gray-700 mb-1 ml-1 mr-5">SENSEX</label>
                                 </div>
                             </div>
-                             <Button className="text-white" onClick={() => haldleSubmit()}>Show</Button>
+                             <Button className="bg-[var(--rv-secondary)] text-white disabled:opacity-50 hover:bg-[var(--rv-primary)]" onClick={() => haldleSubmit()}>Show</Button>
                                
                         </div>
                     </div>
@@ -545,6 +548,7 @@ export default function Page() {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 }

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { TrendingUp } from "lucide-react";
-import { Area, AreaChart, CartesianGrid, XAxis, Tooltip } from "recharts";
+import { Area, AreaChart, CartesianGrid, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 import {
     Card,
     CardContent,
@@ -52,32 +52,32 @@ export function ReturnChart({ data }) {
                 <CardDescription>Showing NAV trends over time</CardDescription>
             </CardHeader>
             <CardContent>
-                <AreaChart
-                    data={chartData}
-                    width={780}
-                    height={300}
-                    margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis
-                        dataKey="date"
-                        tickLine={false}
-                        axisLine={false}
-                        tickMargin={8}
-                        tickFormatter={(value) => value && value.slice(0, 10)} // Show full date or limit to 10 characters
-                    />
-                    <Tooltip cursor={false} />
-                    <Area
-                        type="monotone"
-                        dataKey="value"
-                        stroke="#8884d8"
-                        fill="#8884d8"
-                        fillOpacity={0.4}
-                    />
-                </AreaChart>
+            <ResponsiveContainer width="100%" height={300}>
+  <AreaChart
+    data={chartData}
+    margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+  >
+    <CartesianGrid strokeDasharray="3 3" />
+    <XAxis
+      dataKey="date"
+      tickLine={false}
+      axisLine={false}
+      tickMargin={8}
+      tickFormatter={(value) => value && value.slice(0, 10)}
+    />
+    <Tooltip cursor={false} />
+    <Area
+      type="monotone"
+      dataKey="value"
+      stroke="#8884d8"
+      fill="#8884d8"
+      fillOpacity={0.4}
+    />
+  </AreaChart>
+</ResponsiveContainer>
             </CardContent>
             <CardFooter>
-                <div className="flex mb-4">
+                <div className="flex mb-4 overflow-x-auto">
                     <Button variant="outline" onClick={() => handleFilter(new Date(new Date().setDate(new Date().getDate() - 7)))} className="mr-2">1 W</Button>
                     <Button variant="outline" onClick={() => handleFilter(new Date(new Date().setMonth(new Date().getMonth() - 1)))} className="mr-2">1 M</Button>
                     <Button variant="outline" onClick={() => handleFilter(new Date(new Date().setMonth(new Date().getMonth() - 6)))} className="mr-2">6 M</Button>

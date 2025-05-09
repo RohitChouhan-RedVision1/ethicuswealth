@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import "chart.js/auto";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -25,31 +26,32 @@ export default function Page() {
     const [result, setResult] = useState(null);
     const [chartData, setChartData] = useState([]);
 
-    const calculateInsurancePlan = async () => {
-        try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_DATA_API}/api/calculators/life-insurance-calculator?loanAmount=${loanAmount}&currentFdRate=${currentFdRate}&protectionDuration=${protectionDuration}&inflationRate=${inflationRate}&monthlyExpenses=${monthlyExpenses}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
-            if (res.status === 200) {
-                const data = res.data
-                const loanAmount = data.loanAmount;
-                const totalHouseholdExpenses = data.totalHouseholdExpenses;
-                const totalInsuranceCover = data.totalInsuranceCover;
-                const yearlyData = data.yearlyData;
-                setResult({
-                    loanRepayment: loanAmount,
-                    householdExpenses: Math.round(totalHouseholdExpenses),
-                    totalInsuranceCover: Math.round(totalInsuranceCover),
-                });
-                setChartData(yearlyData);
-            }
-        }
-        catch (error) {
-            console.log(error)
-        }
-
-    };
+   
 
     // Update the calculation when any of the values change
     useEffect(() => {
+        const calculateInsurancePlan = async () => {
+            try {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_DATA_API}/api/calculators/life-insurance-calculator?loanAmount=${loanAmount}&currentFdRate=${currentFdRate}&protectionDuration=${protectionDuration}&inflationRate=${inflationRate}&monthlyExpenses=${monthlyExpenses}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
+                if (res.status === 200) {
+                    const data = res.data
+                    const loanAmount = data.loanAmount;
+                    const totalHouseholdExpenses = data.totalHouseholdExpenses;
+                    const totalInsuranceCover = data.totalInsuranceCover;
+                    const yearlyData = data.yearlyData;
+                    setResult({
+                        loanRepayment: loanAmount,
+                        householdExpenses: Math.round(totalHouseholdExpenses),
+                        totalInsuranceCover: Math.round(totalInsuranceCover),
+                    });
+                    setChartData(yearlyData);
+                }
+            }
+            catch (error) {
+                console.log(error)
+            }
+    
+        };
         calculateInsurancePlan();
     }, [loanAmount, currentFdRate, inflationRate, protectionDuration, monthlyExpenses]);
     const handleCalculatorChange = (e) => {
@@ -60,45 +62,26 @@ export default function Page() {
     };
 
     return (
-        <div className="max-w-screen-xl py-32 mx-auto ">
-            <div className="mb-5 flex justify-between">
-                <Breadcrumb>
-                    <BreadcrumbList>
-                        <BreadcrumbItem>
-                            <BreadcrumbLink href="/" className="text-gray-800 hover:">
-                                Home
-                            </BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <BreadcrumbSeparator className="text-gray-500" />
-                        <BreadcrumbItem>
-                            <BreadcrumbLink href="/tools/calculators" className="text-gray-800 hover:">
-                                Tools
-                            </BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <BreadcrumbSeparator className="text-gray-500" />
-                        <BreadcrumbItem>
-                            <BreadcrumbLink href="/tools/calculators" className="text-gray-800 hover:">
-                                Calculators
-                            </BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <BreadcrumbSeparator className="text-gray-500" />
-                        <BreadcrumbItem>
-                            <BreadcrumbPage className="">Life Insurance Calculator</BreadcrumbPage>
-                        </BreadcrumbItem>
-                    </BreadcrumbList>
-                </Breadcrumb>
+        <div  className="max-w-screen-xl mx-auto py-[30px] lg:py-[60px]">
+        <div className="">
+            <div className="mb-5 flex flex-col md:flex-row gap-5 justify-between">
+            <div className="">
+                        <h1 className="text-2xl md:text-3xl font-bold uppercase">
+                            Life Insurance Planning Calculator
+                        </h1>
+                    </div>
                 <div className="flex justify-between gap-4">
-                    <h2 className="text-gray-800">Explore other calculators</h2>
+                    <h2>Explore other calculators</h2>
                     <select
-                        className="w-full border border-yellow-400 rounded-lg p-2 bg-gray-50 "
+                        className="w-full border border-gray-500 rounded-lg p-2"
                         onChange={handleCalculatorChange}
                         defaultValue=""
                     >
-                        <option value="" disabled className="bg-gray-50">
+                        <option value="" disabled>
                             Select
                         </option>
                         {calculators.map((calc) => (
-                            <option key={calc.title} value={calc.route} className="bg-gray-50">
+                            <option key={calc.title} value={calc.route}>
                                 {calc.title}
                             </option>
                         ))}
@@ -106,165 +89,164 @@ export default function Page() {
                 </div>
             </div>
             <div>
-                <div className="mb-10">
-                    <h1 className="text-4xl font-bold ">
-                        Life Insurance Calculator
-                    </h1>
-                </div>
-                <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 mb-4">
-                    <div className='col-span-1 border border-yellow-400 rounded-2xl bg-gray-50 p-5'>
-                        <div className="insurance-calculator container mx-auto p-3 sticky top-0 z-10">
-                            <div className="input-fields mt-5 mb-10">
-                                <div>
-                                    <div className='flex justify-between'>
-                                        <h1>Loan Amount</h1>
-                                        <div>
-                                            <span className='font-semibold text-green-700'>₹</span>
+                <div>
+                    
+                    <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 mb-4">
+                        <div className='col-span-1 border border-gray-200 rounded-2xl bg-white p-5'>
+                            <div className="insurance-calculator container mx-auto p-3 sticky top-0 z-10">
+                                <div className="input-fields mt-5 mb-10">
+                                    <div>
+                                        <div className='flex justify-between'>
+                                            <h1>Loan Amount</h1>
+                                            <div>
+                                                <span className='font-semibold text-green-700'>₹</span>
+                                                <input
+                                                    type="text"
+                                                    value={loanAmount}
+                                                    onChange={(e) => setLoanAmount(parseFloat(e.target.value))}
+                                                    className='font-semibold text-green-700 w-24 border-none'
+                                                />
+                                            </div>
+                                        </div>
+                                        <Input
+                                            type="range"
+                                            min="10000"
+                                            max="10000000"
+                                            step="1000"
+                                            value={loanAmount}
+                                            onChange={(e) => setLoanAmount(parseFloat(e.target.value))}
+                                            className="w-full text-gray-400"
+                                        />
+                                    </div>
+                                    <div className='items-center mt-5'>
+                                        <div className='flex justify-between'>
+                                            <h1>Current FD Rate (%)</h1>
                                             <input
                                                 type="text"
-                                                value={loanAmount}
-                                                onChange={(e) => setLoanAmount(parseFloat(e.target.value))}
-                                                className='font-semibold text-green-700 w-24 border-none bg-transparent'
+                                                value={currentFdRate}
+                                                onChange={(e) => setCurrentFdRate(parseFloat(e.target.value))}
+                                                className="font-semibold text-green-700 w-10 border-none"
                                             />
                                         </div>
-                                    </div>
-                                    <Input
-                                        type="range"
-                                        min="10000"
-                                        max="10000000"
-                                        step="1000"
-                                        value={loanAmount}
-                                        onChange={(e) => setLoanAmount(parseFloat(e.target.value))}
-                                        className="w-full text-gray-400"
-                                    />
-                                </div>
-                                <div className='items-center mt-5'>
-                                    <div className='flex justify-between'>
-                                        <h1>Current FD Rate (%)</h1>
-                                        <input
-                                            type="text"
+                                        <Input
+                                            type="range"
+                                            min="1"
+                                            max="15"
+                                            step="0.1"
                                             value={currentFdRate}
                                             onChange={(e) => setCurrentFdRate(parseFloat(e.target.value))}
-                                            className="font-semibold text-green-700 w-10 border-none bg-transparent"
+                                            className="w-full text-gray-400"
                                         />
                                     </div>
-                                    <Input
-                                        type="range"
-                                        min="1"
-                                        max="15"
-                                        step="0.1"
-                                        value={currentFdRate}
-                                        onChange={(e) => setCurrentFdRate(parseFloat(e.target.value))}
-                                        className="w-full text-gray-400"
-                                    />
-                                </div>
-                                <div className='items-center mt-5'>
-                                    <div className='flex justify-between'>
-                                        <h1>Inflation Rate (%)</h1>
-                                        <input
-                                            type="text"
-                                            value={inflationRate}
-                                            onChange={(e) => setInflationRate(parseFloat(e.target.value))}
-                                            className="font-semibold text-green-700 w-10 border-none bg-transparent"
-                                        />
-                                    </div>
-                                    <Input
-                                        type="range"
-                                        min="1"
-                                        max="30"
-                                        step="1"
-                                        value={inflationRate}
-                                        onChange={(e) => setInflationRate(parseFloat(e.target.value))}
-                                        className="w-full text-gray-400"
-                                    />
-                                </div>
-                                <div className='items-center mt-5'>
-                                    <div className='flex justify-between'>
-                                        <h1>For How Many Years You Want To Protect Your Household Expenses</h1>
-                                        <input
-                                            type="text"
-                                            value={protectionDuration}
-                                            onChange={(e) => setProtectionDuration(parseFloat(e.target.value))}
-                                            className="font-semibold text-green-700 w-10 border-none bg-transparent"
-                                        />
-                                    </div>
-                                    <Input
-                                        type="range"
-                                        min="1"
-                                        max="40"
-                                        step="1"
-                                        value={protectionDuration}
-                                        onChange={(e) => setProtectionDuration(parseFloat(e.target.value))}
-                                        className="w-full text-gray-400"
-                                    />
-                                </div>
-                                <div className='items-center mt-5'>
-                                    <div className='flex justify-between'>
-                                        <h1>Monthly Expenses</h1>
-                                        <div>
-                                            <span className='font-semibold text-green-700'>₹</span>
+                                    <div className='items-center mt-5'>
+                                        <div className='flex justify-between'>
+                                            <h1>Inflation Rate (%)</h1>
                                             <input
                                                 type="text"
-                                                value={monthlyExpenses}
-                                                onChange={(e) => setMonthlyExpenses(parseFloat(e.target.value))}
-                                                className='font-semibold text-green-700 w-24 border-none bg-transparent'
+                                                value={inflationRate}
+                                                onChange={(e) => setInflationRate(parseFloat(e.target.value))}
+                                                className="font-semibold text-green-700 w-10 border-none"
                                             />
                                         </div>
+                                        <Input
+                                            type="range"
+                                            min="1"
+                                            max="30"
+                                            step="1"
+                                            value={inflationRate}
+                                            onChange={(e) => setInflationRate(parseFloat(e.target.value))}
+                                            className="w-full text-gray-400"
+                                        />
                                     </div>
-                                    <Input
-                                        type="range"
-                                        min="0"
-                                        max="500000"
-                                        step="1000"
-                                        value={monthlyExpenses}
-                                        onChange={(e) => setMonthlyExpenses(parseFloat(e.target.value))}
-                                        className="w-full text-gray-400"
-                                    />
+                                    <div className='items-center mt-5'>
+                                        <div className='flex justify-between'>
+                                            <h1>For How Many Years You Want To Protect Your Household Expenses</h1>
+                                            <input
+                                                type="text"
+                                                value={protectionDuration}
+                                                onChange={(e) => setProtectionDuration(parseFloat(e.target.value))}
+                                                className="font-semibold text-green-700 w-10 border-none"
+                                            />
+                                        </div>
+                                        <Input
+                                            type="range"
+                                            min="1"
+                                            max="40"
+                                            step="1"
+                                            value={protectionDuration}
+                                            onChange={(e) => setProtectionDuration(parseFloat(e.target.value))}
+                                            className="w-full text-gray-400"
+                                        />
+                                    </div>
+                                    <div className='items-center mt-5'>
+                                        <div className='flex justify-between'>
+                                            <h1>Monthly Expenses</h1>
+                                            <div>
+                                                <span className='font-semibold text-green-700'>₹</span>
+                                                <input
+                                                    type="text"
+                                                    value={monthlyExpenses}
+                                                    onChange={(e) => setMonthlyExpenses(parseFloat(e.target.value))}
+                                                    className='font-semibold text-green-700 w-24 border-none'
+                                                />
+                                            </div>
+                                        </div>
+                                        <Input
+                                            type="range"
+                                            min="0"
+                                            max="500000"
+                                            step="1000"
+                                            value={monthlyExpenses}
+                                            onChange={(e) => setMonthlyExpenses(parseFloat(e.target.value))}
+                                            className="w-full text-gray-400"
+                                        />
+                                    </div>
                                 </div>
+
+                                {result && (
+                                    <div className="mt-5">
+                                        <div className='flex justify-between px-5 mb-3'>
+                                            <p>You need Life Insurance Cover Of</p>
+                                            <p className='font-bold text-lg'>₹{result?.totalInsuranceCover?.toLocaleString()}</p>
+                                        </div>
+                                        <hr className='mb-3' />
+                                        <div className='flex justify-between px-5 mb-3'>
+                                            <p>Loan Repayment</p>
+                                            <p className='font-bold text-lg'>₹{result?.loanRepayment?.toLocaleString()}</p>
+                                        </div>
+                                        <hr className='mb-3' />
+                                        <div className='flex justify-between px-5 mb-3'>
+                                            <p>Household Expenses</p>
+                                            <p className='font-bold text-lg'>₹{result?.householdExpenses?.toLocaleString()}</p>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                )}
                             </div>
+                        </div>
+                        <div className='col-span-1 border border-gray-200 rounded-2xl bg-white p-5'>
+                            <div className="mb-10">
+                                <SippieChart
+                                    piedata={{
+                                        totalInvestment: result?.totalInsuranceCover,
+                                        futureValue: result?.loanRepayment
+                                    }}
+                                    title={'Life Insurance'}
+                                    customLabels={{
+                                        invested: "Household Expenses",
+                                        return: "Loan Repayment",
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <CalculatorReturnChart data={chartData} title={"Life Insurance"} />
+                            </div>
+                        </div>
+                    </div>
 
-                            {result && (
-                                <div className="mt-5">
-                                    <div className='flex justify-between px-5 mb-3'>
-                                        <p>You need Life Insurance Cover Of</p>
-                                        <p className='font-bold text-lg'>₹{result?.totalInsuranceCover?.toLocaleString()}</p>
-                                    </div>
-                                    <hr className='mb-3' />
-                                    <div className='flex justify-between px-5 mb-3'>
-                                        <p>Loan Repayment</p>
-                                        <p className='font-bold text-lg'>₹{result?.loanRepayment?.toLocaleString()}</p>
-                                    </div>
-                                    <hr className='mb-3' />
-                                    <div className='flex justify-between px-5 mb-3'>
-                                        <p>Household Expenses</p>
-                                        <p className='font-bold text-lg'>₹{result?.householdExpenses?.toLocaleString()}</p>
-                                    </div>
-                                    <hr />
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                    <div className='col-span-1 rounded-2xl'>
-                        <div className="mb-10">
-                            <SippieChart
-                                piedata={{
-                                    totalInvestment: result?.totalInsuranceCover,
-                                    futureValue: result?.loanRepayment
-                                }}
-                                title={'Life Insurance'}
-                                customLabels={{
-                                    invested: "Household Expenses",
-                                    return: "Loan Repayment",
-                                }}
-                            />
-                        </div>
-                        <div>
-                            <CalculatorReturnChart data={chartData} title={"Life Insurance"} />
-                        </div>
-                    </div>
                 </div>
-
             </div>
+        </div>
         </div>
     );
 }

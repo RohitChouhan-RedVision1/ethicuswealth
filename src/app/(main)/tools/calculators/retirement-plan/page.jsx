@@ -21,66 +21,31 @@ export default function RetirementCalculator() {
     const [currentAge, setCurrentAge] = useState(30);
     const [retirementAge, setRetirementAge] = useState(60);
     const [lifeExpectancy, setLifeExpectancy] = useState(85);
-    const [requirement, setRequirement] = useState(1000); // Current Monthly Expenses
-    const [expectedReturnPreRetirement, setExpectedReturnPreRetirement] = useState(8); // in percentage
-    const [expectedReturnPostRetirement, setExpectedReturnPostRetirement] = useState(24); // in percentage
+    const [requirement, setRequirement] = useState(40000); // Current Monthly Expenses
+    const [expectedReturnPreRetirement, setExpectedReturnPreRetirement] = useState(14); // in percentage
+    const [expectedReturnPostRetirement, setExpectedReturnPostRetirement] = useState(7); // in percentage
     const [inflationRate, setInflationRate] = useState(7); // in percentage
-    const [futureMonthlyExpenses, setFutureMonthlyExpenses] = useState(null);
-    const [retirementCorpus, setRetirementCorpus] = useState(null);
-    const [monthlySavings, setMonthlySavings] = useState(null);
+    const [result, setResult] = useState(null);
+    const [chartData, setChartData] = useState(null);
 
     const calculateRetirement = async () => {
-        // const res = await axios.get(`http://localhost:3000/api/calculators/retirement-calculator?currentAge=${currentAge}&retirementAge=${retirementAge}&lifeExpectancy=${lifeExpectancy}&requirement=${requirement}&expectedReturnPreRetirement=${expectedReturnPreRetirement}&expectedReturnPostRetirement=${expectedReturnPostRetirement}&inflationRate=${inflationRate}&futureMonthlyExpenses=${futureMonthlyExpenses}&retirementCorpus=${retirementCorpus}&monthlySavings=${monthlySavings}`);
-
-        // if (res.status === 200) {
-        //     const data = res.data
-        //     const totalInvestment = data.totalInvestment;
-        //     const futureMarriageCost = data.futureMarriageCost;
-        //     const lumpsumInvestment = data.lumpsumInvestment;
-        //     const sipInvestment = data.sipInvestment;
-        //     const yearlyData = data.yearlyData;
-        //     setResult({
-        //         totalInvestment,
-        //         futureValue: Math.round(futureMarriageCost),
-        //         lumpsumInvestment: Math.round(lumpsumInvestment),
-        //         sipInvestment: Math.round(sipInvestment),
-        //     });
-        //     setChartData(yearlyData);
-        // }
-
-        const yearsUntilRetirement = retirementAge - currentAge;
-
-        // Calculate future monthly expenses (FV = PV * (1 + r)^n)
-        const futureMonthlyExpenses = requirement * Math.pow(1 + (inflationRate / 100), yearsUntilRetirement);
-        setFutureMonthlyExpenses(Math.round(futureMonthlyExpenses));
-
-        // Calculate the required annual income at retirement
-        const futureAnnualIncomeRequired = futureMonthlyExpenses * 12; // Convert to yearly
-
-        // Adjusted return rate for inflation
-        const adjustedReturnRate = (1 + expectedReturnPreRetirement / 100) / (1 + inflationRate / 100) - 1;
-
-        // Calculate the retirement period based on life expectancy
-        const retirementPeriodMonths = (lifeExpectancy - retirementAge) * 12; // Adjust for life expectancy
-
-        // Calculate the corpus needed to generate the future income
-        const monthlyIncomeAdjusted = futureAnnualIncomeRequired / 12; // Monthly income needed
-        const corpusNeeded = (monthlyIncomeAdjusted * ((1 - Math.pow(1 + (adjustedReturnRate / 12), -retirementPeriodMonths)) / (adjustedReturnRate / 12)));
-
-
-        // Calculate monthly savings needed to accumulate the corpus
-        const monthlySavingsNeeded = (corpusNeeded / Math.pow(1 + (expectedReturnPreRetirement / 100 / 12), yearsUntilRetirement * 12)) / (yearsUntilRetirement * 12);
-
-        setMonthlySavings(Math.round(monthlySavingsNeeded));
-        setRetirementCorpus(Math.round(corpusNeeded));
-
-        // Prepare data for the chart (optional)
-        // setChartData([{
-        //     year: currentAge + yearsUntilRetirement,
-        //     corpusNeeded: Math.round(corpusNeeded),
-        //     futureExpenses: Math.round(futureMonthlyExpenses * 12),
-        //     monthlySavingsNeeded: Math.round(monthlySavingsNeeded)
-        // }]);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_DATA_API}/api/calculators/retirement-plan?currentAge=${currentAge}&retirementAge=${retirementAge}&expectedReturnPreRetirement=${expectedReturnPreRetirement}&expectedReturnPostRetirement=${expectedReturnPostRetirement}&inflationRate=${inflationRate}&monthlyexpense=${requirement}&lifeExpectancy=${lifeExpectancy}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`);
+        if (res.status === 200) {
+            const data = res.data
+            const retirementCorpus = data.retirementCorpus;
+            const futureMonthlyExpense = data.futureMonthlyExpense;
+            const lumpsumInvestment = data.lumpsumFutureValue;
+            const sipInvestment = data.sipFutureValue;
+            const yearlyData = data.yearlyData;
+            setResult({
+                retirementCorpus: Math.round(retirementCorpus),
+                futureValue: Math.round(futureMonthlyExpense),
+                lumpsumInvestment: Math.round(lumpsumInvestment),
+                sipInvestment: Math.round(sipInvestment),
+                totalInvestment: Math.round(requirement),
+            });
+            setChartData(yearlyData);
+        }
     };
 
     useEffect(() => {
@@ -94,7 +59,8 @@ export default function RetirementCalculator() {
     };
 
     return (
-        <div className="lg:px-40 px-10 py-10">
+        <div  className="max-w-screen-xl mx-auto py-[30px] lg:py-[60px]">
+        <div className="">
             <div className="mb-5 flex justify-between">
                 <Breadcrumb>
                     <BreadcrumbList>
@@ -295,41 +261,51 @@ export default function RetirementCalculator() {
                                     </div>
 
                                     {/* Display Results */}
-                                    {monthlySavings && retirementCorpus && (
+                                    {result && (
                                         <div className="mt-5">
                                             <div className='flex justify-between px-5 mb-3'>
                                                 <p>Future Monthly Expenses</p>
-                                                <p className='font-bold text-lg'>₹{futureMonthlyExpenses?.toLocaleString()}</p>
+                                                <p className='font-bold text-lg'>₹{result?.futureValue?.toLocaleString()}</p>
                                             </div>
                                             <hr className='mb-3' />
                                             <div className='flex justify-between px-5 mb-3'>
                                                 <p>Required Corpus At Retirement</p>
-                                                <p className='font-bold text-lg'>₹{retirementCorpus?.toLocaleString()}</p>
+                                                <p className='font-bold text-lg'>₹{result?.retirementCorpus?.toLocaleString()}</p>
                                             </div>
                                             <hr className='mb-3' />
                                             <div className='flex justify-between px-5 mb-3'>
                                                 <p>Planning Through SIP</p>
-                                                <p className='font-bold text-lg'>₹{monthlySavings?.toLocaleString()}</p>
+                                                <p className='font-bold text-lg'>₹{result?.sipInvestment?.toLocaleString()}</p>
                                             </div>
                                             <hr className='mb-3' />
                                             <div className='flex justify-between px-5 mb-3'>
                                                 <p>Planning Through Lump Sum</p>
-                                                <p className='font-bold text-lg'>₹{(retirementCorpus * 0.80).toLocaleString()}</p>
+                                                <p className='font-bold text-lg'>₹{result?.lumpsumInvestment?.toLocaleString()}</p>
                                             </div>
                                         </div>
                                     )}
                                 </div>
                             </div>
                         </div>
-                        <div className='col-span-1'>
-                            <SippieChart piedata={requirement} />
+                        <div className='col-span-1 space-y-5'>
+                            <SippieChart
+                                piedata={result}
+                                title={'Future & Current Monthly Expenses Breakup'}
+                                customLabels={{
+                                    invested: "Future Monthly Expenses",
+                                    return: "Current Monthly Expenses",
+                                }}
+                                className="h-full"
+                            />
+                            <CalculatorReturnChart data={chartData}
+                                title="SIP"
+                                className="h-full"
+                            />
                         </div>
-                    </div>
-                    <div>
-                        {/* <CalculatorReturnChart data={chartData} /> */}
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 }

@@ -48,6 +48,14 @@ export default function FeaturesSection() {
                     <Link href="/login" className={`${styles.knowMoreButton} mt-5`}>
                         Know More
                     </Link>
+
+                    <Image
+                                src={"/images/new mobile.png"}
+                                alt={"mobile"}
+                                width={300}
+                                height={100}
+                                className={"md:ml-20"}
+                            />
                 </div>
                 <div className={styles.cardsContainer}>
                     {features.map((feature, index) => (

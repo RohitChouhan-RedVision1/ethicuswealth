@@ -25,8 +25,8 @@ export default function AboutSection() {
           </div>
 
           <div className={`${styles.whitePlaceholder} aniamtion-key-1`}>
-                            <h1 className="text-[var(--rv-primary)] font-bold" >10+ Years</h1>
-                            <p className="font-medium text-lg">of experience in finance</p>
+                            <h1 className="text-[var(--rv-primary)] font-bold" >20+</h1>
+                            <p className="font-medium text-lg">Qualified Team Members</p>
                         </div>
         </div>
       </div>

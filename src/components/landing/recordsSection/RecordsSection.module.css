@@ -57,10 +57,10 @@
 
 .label {
     /* font-size: 1.6rem; */
-    color: var(--rv-primary);
+    color: white;
 }
 
-/* Background Dots */
+Background Dots
 .recordsContainer::after {
     content: '';
     position: absolute;

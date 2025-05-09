@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "chart.js/auto";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,11 +15,40 @@ import { toast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import { FaFilePdf } from "react-icons/fa6";
 import { generatePDF } from "@/lib/generatePdf";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@radix-ui/react-label";
 import { StpPerformanceChart } from "@/components/charts/stpPerformanceChart";
-import StpPerformanceTofundTable from "@/components/tables/stpPerformanceTofundTable";
-import StpPerformanceFromfundTable from "@/components/tables/stpPerformanceFromfundTable";
+import StpPerformanceTofundTable from "@/components/stpPerformanceTofundTable";
+import StpPerformanceFromfundTable from "@/components/stpPerformanceFromfundTable";
 
 export default function Page() {
+  const [loading, setLoading] = useState(false);
+  const FormSchema = z.object({
+    username: z
+      .string()
+      .min(2, { message: "Username must be at least 2 characters." }),
+    mobile: z.string().nonempty({ message: "Mobile number is required." }),
+    email: z.string().email({ message: "Invalid email address." }),
+  });
   function getTodayDate() {
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -48,6 +78,49 @@ export default function Page() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [graphData, setGraphData] = useState(false);
 
+  const form = useForm({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      username: "",
+      mobile: "",
+      email: "",
+      message: "",
+    },
+  });
+
+  // Handle form submission
+  const onSubmit = async (data) => {
+    setLoading(true);
+    const emaildata = {
+      user: data?.username,
+      to: data?.email,
+      subject: "Test Email",
+      text: "This is a test email sent from Nodemailer!",
+    };
+
+    try {
+      const response = await axios.post("/api/leads/", data);
+      const info = await axios.post("/api/email/", emaildata);
+      if (response.status === 201) {
+        toast({
+          description: "Your message has been sent.",
+        });
+        form.reset();
+      } else {
+        alert(response.statusText);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An unexpected error occurred.");
+    }
+    localStorage.setItem("formSubmitted", "true");
+    localStorage.setItem("submissionTimestamp", Date.now().toString());
+    setIsModalOpen(false);
+    setLoading(false);
+    setIsSubmitted(true);
+    setGraphData(true);
+    haldleSubmit();
+  };
 
   // Constants for time calculations
   const TWENTY_DAYS_IN_MS = 15 * 24 * 60 * 60 * 1000; // 15 days in milliseconds
@@ -227,34 +300,19 @@ export default function Page() {
   };
 
   return (
-    <div className="lg:px-40 md:px-20 px-3 py-36">
-      <Toaster />
-      <div className="mb-5">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/tools/calculators">
-                Performance
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Stp Performance</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+    <div className="">
+       <div className="flex bg-center bg-no-repeat bg-cover bg-[url('/images/pay-premium/pay-premium.webp')] bg-gray-500 overflow-hidden text-start justify-start items-center h-64">
+        <div className="max-w-screen-xl mx-auto">
+          <h1 className="text-gray-900 text-3xl md:text-5xl font-bold">
+          SIP Performance
+          </h1>
+        </div>
       </div>
+      <div className="max-w-screen-xl mx-auto py-[30px] md:py-[60px] ">
+      <Toaster />
+      
       <div>
         <div>
-          <div className="mb-10">
-            <h1 className="text-4xl font-bold text-gray-800">
-              STP Performance
-            </h1>
-          </div>
           <div className="col-span-1 border border-gray-200 rounded-2xl bg-white p-2 mb-3">
             <div className="sip-calculator container mx-auto p-3 sticky top-0 z-10">
               {/* Investment Type Toggle */}
@@ -265,10 +323,10 @@ export default function Page() {
                     setSchemesData([]),
                     setGraphData(false)
                   )}
-                  className={`text-sm rounded-full ${
+                  className={`text-sm rounded-full hover:bg-[var(--rv-primary)] ${
                     isMonthlySip
-                      ? "bg-[#0E314D] text-white"
-                      : "bg-[var(--rv-bg-primary)] text-gray-800"
+                      ? "bg-[var(--rv-secondary)] text-white"
+                      : "bg-[var(--rv-primary)] text-white "
                   }`}
                 >
                   Fund House
@@ -279,10 +337,10 @@ export default function Page() {
                     setSchemesData([]),
                     setGraphData(false)
                   )}
-                  className={`text-sm rounded-full ${
+                  className={`text-sm rounded-full hover:bg-[var(--rv-primary)] ${
                     !isMonthlySip
-                      ? "bg-[#0E314D] text-white"
-                      : "bg-[var(--rv-bg-primary)] text-gray-800"
+                      ? "bg-[var(--rv-secondary)] text-white"
+                      : "bg-[var(--rv-primary)] text-white"
                   }`}
                 >
                   Asset Category
@@ -320,7 +378,7 @@ export default function Page() {
                     </div>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-4 gap-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2  gap-x-4 gap-y-4">
                     <div>
                       <h1 className="font-semibold text-gray-700">
                         Select Equity Funds
@@ -613,7 +671,7 @@ export default function Page() {
                   </div>
                 </div>
               </div>
-              <Button className="text-white" onClick={() => haldleSubmit()}>
+              <Button className="bg-[var(--rv-secondary)] text-white disabled:opacity-50 hover:bg-[var(--rv-primary)]" onClick={() => haldleSubmit()}>
                 Show
               </Button>
             </div>
@@ -828,6 +886,7 @@ export default function Page() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

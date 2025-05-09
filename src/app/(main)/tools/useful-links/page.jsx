@@ -29,9 +29,9 @@ const UsefulLinksPage = () => {
   return (
     <div className="">
       <div className="flex bg-center bg-no-repeat bg-cover bg-[url('/images/pay-premium/pay-premium.webp')] bg-gray-500 overflow-hidden text-center justify-center items-center h-64">
-                <h1 className="text-gray-900 text-3xl md:text-5xl font-bold">Pay Premium Online</h1>
+                <h1 className="text-gray-900 text-3xl md:text-5xl font-bold">Useful Links</h1>
             </div>
-    <div className="main_section">
+    <div className="">
       <div className="container mx-auto md:px-20 px-4 pt-5">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {usefulLink.map((link, index) => (
@@ -39,7 +39,7 @@ const UsefulLinksPage = () => {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white border rounded-lg shadow-md p-4 text-center hover:shadow-lg transition hover:bg-[#DEEADB] hover:text-black duration-300 flex flex-col justify-center items-center"
+                className="bg-[var(--rv-secondary)] text-white border rounded-lg shadow-md p-4 text-center hover:shadow-lg transition hover:bg-[var(--rv-primary)] hover:text-white duration-300 flex flex-col justify-center items-center"
               >
                 <h3 className="text-xl font-semibold">{link.title}</h3>
               </a>
