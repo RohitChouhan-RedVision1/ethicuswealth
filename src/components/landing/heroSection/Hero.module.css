@@ -74,16 +74,18 @@
     position: absolute;
     top: 56%;
     left: 15%;
-    width: 323px;
+    width: 330px;
     height: 128px;
     background-color: white;
     border-radius: 15px;
     z-index: 3;
     box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2);
-    /* background-image: url('/images/mock1.png');
+    background-image: url('/images/home1.png');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat; */
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    background-size: 90% 90%;
 }
 
 .placeholderTextleft {
@@ -100,13 +102,18 @@
     position: absolute;
     top: 15%;
     right: 18%;
-    width: 350px;
-    height: 200px;
+    width: 340px;
+    height: 250px;
     background-color: white;
     border-radius: 15px;
     z-index: 3;
     box-shadow: 10px 10px 14px rgba(0, 0, 0, 0.2);
-    
+    background-image: url('/images/home2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 100px;
+    background-size: 80% 80%;
 }
 
 .placeholderText {

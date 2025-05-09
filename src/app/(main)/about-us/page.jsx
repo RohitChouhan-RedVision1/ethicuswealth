@@ -259,8 +259,8 @@ export default async function AboutUs() {
               </div>
 
               <div className="group bg-[var(--rv-primary)] p-8 rounded-xl shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
-                <div className="grid md:grid-cols-6 justify-center gap-5">
-                <div className="md:col-span-4">
+                <div className="grid md:grid-cols-6 justify-center md:gap-5">
+                <div className="md:col-span-4 mb-4">
                     <div>
                       <h3 className="text-2xl font-bold text-white pt-0 mt-0 mb-4">
                       Ms. RUBINA HAKIM (CFGP)

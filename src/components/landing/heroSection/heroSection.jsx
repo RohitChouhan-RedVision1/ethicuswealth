@@ -58,14 +58,10 @@ export default function HeroSection({ sitedata }) {
           />
         </div>
         <div className={`${styles.placeholderLeft} hidden lg:block  p-5 aniamtion-key-2`}>
-            <div className="flex items-center text-center mb-2">
-            <img src="/images/icontop1.png" alt="Experience Icon" className="w-10 h-10 " />
-            <span className="text-5xl font-bold text-[var(--rv-primary)]">30+</span>
-            </div>
-            <p className="font-semibold">Years Combined Experience</p>
+            
         </div>
         <div className={`${styles.placeholderRight}  aniamtion-key-4`}>
-        <div className="flex items-center mt-2">
+        {/* <div className="flex items-center mt-2">
         <img src="/images/icontop2.png" alt="Experience Icon" className="w-12 h-12 " />
         <div className="flex flex-col ">
             <span className="text-5xl font-bold text-[var(--rv-primary)]">30+</span>
@@ -80,7 +76,7 @@ export default function HeroSection({ sitedata }) {
             <p className=" font-semibold">Years Combined Experience</p>
             </div>
             
-        </div>
+        </div> */}
         </div>
       </div>
     </div>
