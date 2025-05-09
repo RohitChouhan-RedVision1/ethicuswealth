@@ -6,7 +6,8 @@ import SectionHeading from "../sectionHeading";
 
 export default function AboutSection() {
   return (
-    <div
+    <div className="py-[30px] md:py-[60px]">
+      <div
       className={`${styles.aboutContainer} max-w-screen-xl mx-auto px-3 md:px-0`}
       data-aos="fade-up"
       data-aos-duration="800"
@@ -15,7 +16,7 @@ export default function AboutSection() {
         <div className="flex flex-col">
           <div className="">
             <Image
-              src={"/images/aboutus/about_home.png"}
+              src={"/images/aboutus.webp"}
               alt="grid"
               width={500}
               height={500}
@@ -24,7 +25,7 @@ export default function AboutSection() {
           </div>
 
           <div className={`${styles.whitePlaceholder} aniamtion-key-1`}>
-                            <h1 className="text-[var(--rv-secondaryt)] font-bold" >10+ Years</h1>
+                            <h1 className="text-[var(--rv-primary)] font-bold" >10+ Years</h1>
                             <p className="font-medium text-lg">of experience in finance</p>
                         </div>
         </div>
@@ -54,6 +55,7 @@ export default function AboutSection() {
           only profitable but also aligned with ethical standards and values.
         </p>
       </div>
+    </div>
     </div>
   );
 }

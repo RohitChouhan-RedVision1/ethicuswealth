@@ -76,7 +76,7 @@ export default async function AboutUs() {
           >
             <div className="relative">
               <Image
-                src="/images/aboutus/aboutus.webp"
+                src="/images/aboutus/aboutuss.webp"
                 alt="About Us"
                 width={550}
                 height={550}

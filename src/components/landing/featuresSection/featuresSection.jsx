@@ -11,12 +11,12 @@ export default function FeaturesSection() {
     const features = [
         {
             title: "Portfolio Analysis",
-            icon: "/images/pf.svg",
+            icon: "/images/pficon.png",
             description: "Gain deep insights into your investment portfolio with detailed analytics, performance tracking, and risk assessment to optimize your returns."
         },
         {
             title: "Invest Online",
-            icon: "/images/Invest-online.png",
+            icon: "/images/investonline.png",
             description: "Seamlessly invest in a wide range of mutual funds, stocks, and other financial products online with just a few clicks."
         },
         {
