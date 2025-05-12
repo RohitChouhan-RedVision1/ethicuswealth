@@ -183,9 +183,6 @@ export function Navbar({ services }) {
                   <HoveredLink href="/tools/calculators">
                     Financial Calculator
                   </HoveredLink>
-                  {/* <HoveredLink href="/tools/download-forms">
-                    Download Forms
-                  </HoveredLink> */}
                   <HoveredLink href="/tools/risk-profile">
                     Risk Profile
                   </HoveredLink>
@@ -213,7 +210,7 @@ export function Navbar({ services }) {
               <HoveredLink href="/blogs">Blogs</HoveredLink>
               <HoveredLink href="/about-us">About Us</HoveredLink>
               <HoveredLink href="/contact-us">Contact Us</HoveredLink>
-              <button
+              {/* <button
                 onClick={toggleSearch}
                 className="text-gray-600 hover:text-gray-800 focus:outline-none"
               >
@@ -231,7 +228,7 @@ export function Navbar({ services }) {
                     d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1112 3.5a7.5 7.5 0 014.65 13.15z"
                   />
                 </svg>
-              </button>
+              </button> */}
             </Menu>
           )}
         </div>
@@ -241,7 +238,7 @@ export function Navbar({ services }) {
         </button></Link>
         <div className="flex items-center gap-4 lg:hidden">
           {/* Search Icon */}
-          {!isSearchOpen ? (
+          {/* {!isSearchOpen ? (
             <button onClick={() => setIsSearchOpen(true)}>
               <svg
                 className="w-6 h-6 text-gray-600"
@@ -332,7 +329,7 @@ export function Navbar({ services }) {
                 </div>
               </div>
             </div>
-          )}
+          )} */}
 
           {/* Menu Icon */}
           <button
