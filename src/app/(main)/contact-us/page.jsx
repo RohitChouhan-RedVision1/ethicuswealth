@@ -1,4 +1,6 @@
 import ContactForm from "@/components/ContactUs/contactform";
+import ContactReusableForm from "@/components/landing/contactSection/Contactreusableform";
+import ContactUsFormSection from "@/components/landing/contactSection/contactSection";
 import { getSiteData } from "@/lib/functions";
 import { MapPin, Phone, Mail } from "lucide-react";
 import Link from "next/link";
@@ -59,7 +61,7 @@ export default async function ContactUs() {
 
         {/* Contact Form */}
         <div className="w-full">
-          <ContactForm sitedata={sitedata} />
+          <ContactReusableForm sitedata={sitedata} />
         </div>
       </div>
     </div>

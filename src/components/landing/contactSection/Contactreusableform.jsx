@@ -1,21 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./Contact.module.css";
-import Image from "next/image";
-import SectionHeading from "../sectionHeading";
 import axios from "axios";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
-import ContactReusableForm from "./Contactreusableform";
 
-export default function ContactUsFormSection({ sitedata }) {
+export default function ContactReusableForm({ sitedata }) {
   const [formData, setFormData] = useState({
     username: "",
     mobile: "",
     email: "",
-    subject: "",
     message: "",
   });
-
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [hcaptchaToken, setHcaptchaToken] = useState("");
@@ -45,22 +40,19 @@ export default function ContactUsFormSection({ sitedata }) {
     const senderData = {
       to: sitedata?.email,
       subject: "New Enquiry Received",
-      text: `New Enquiry:\n\nName: ${formData.username}\nEmail: ${formData.email}\nMobile: ${formData.mobile}\nSubject: ${formData.subject}\nMessage: ${formData.message}`,
+      text: `New Enquiry:\n\nName: ${formData.username}\nEmail: ${formData.email}\nMobile: ${formData.mobile}\nMessage: ${formData.message}`,
     };
 
     try {
       const res = await axios.post("/api/leads", formData);
-
       if (res.status === 201) {
         await axios.post("/api/email", emailData);
         await axios.post("/api/email", senderData);
-
         setSubmitted(true);
         setFormData({
           username: "",
           mobile: "",
           email: "",
-        //   subject: "",
           message: "",
         });
         setHcaptchaToken("");
@@ -75,32 +67,72 @@ export default function ContactUsFormSection({ sitedata }) {
     }
   };
 
+  if (submitted) {
+    return (
+      <p className="text-green-600 font-semibold">
+        Thank you! Your message has been sent.
+      </p>
+    );
+  }
+
   return (
-    <div className="max-w-screen-xl mx-auto py-[30px] md:py-[60px]">
-      <div
-        className={`${styles.consultationContainer} grid grid-cols-1 md:grid-cols-2`}
-      >
-        <div className={styles.imageContainer}>
-          <Image
-            src="/images/contact-women.webp"
-            alt="Person working at desk"
-            width={600}
-            height={400}
-            className={styles.consultationImage}
-          />
-        </div>
-
-        <div className={styles.formContainer}>
-          <SectionHeading
-            heading="Let's Talk"
-            title="Free Consultation"
-            variant="dark"
-            align="start"
-          />
-
-         <ContactReusableForm/>
-        </div>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.inputGroup}>
+        <input
+          type="text"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+          placeholder="Name"
+          className={styles.input}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Email"
+          className={styles.input}
+          required
+        />
       </div>
-    </div>
+
+      <div className={styles.inputGroup}>
+        <input
+          type="tel"
+          name="mobile"
+          value={formData.mobile}
+          onChange={handleChange}
+          placeholder="Phone"
+          className={styles.input}
+          required
+        />
+      </div>
+
+      <textarea
+        name="message"
+        value={formData.message}
+        onChange={handleChange}
+        placeholder="Message"
+        className={styles.textarea}
+        required
+      ></textarea>
+
+      <div className="my-3">
+        <HCaptcha
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+          onVerify={setHcaptchaToken}
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="secondarybutton md:w-1/2 mt-2"
+        disabled={loading}
+      >
+        {loading ? "Sending..." : "Send Message"}
+      </button>
+    </form>
   );
 }

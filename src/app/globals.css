@@ -252,12 +252,13 @@ body {
   color: white;
   /* margin-left: 1rem;       ml-4 */
   transition: background-color 0.3s ease;
-  border: none;
+  border: 1px solid var(--rv-primary);
   cursor: pointer;
 }
 
 .primarybutton:hover {
   background-color: var(--rv-primary);
+   border: 1px solid var(--rv-secondary );
 }
 
 .secondarybutton{
@@ -269,8 +270,12 @@ body {
   transition: background-color 0.3s ease;
   border: none;
   cursor: pointer;
+   border: 1px solid var(--rv-secondary );
+
 }
 
 .secondarybutton:hover {
   background-color: var(--rv-secondary);
+   border: 1px solid var(--rv-primary );
+
 }

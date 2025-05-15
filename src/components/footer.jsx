@@ -43,6 +43,11 @@ const Footer = ({ sitedata,servicedata,arn,socialmedialinks}) => {
             title: "Commission Disclosures",
             link: "/commission-disclosures"
         },
+        {
+    title: "Code of Conduct",
+    link: "/AMFI_Code-of-Conduct1.pdf", // Put the actual path where your PDF is stored
+    download: true // custom flag for download
+  }
     ];
     return (
         <footer className="bg-[var(--rv-secondary)]  bg-blend-overlay border-t-2 md:mt-88 sm:mt-88">
@@ -54,7 +59,7 @@ const Footer = ({ sitedata,servicedata,arn,socialmedialinks}) => {
                             alt="logo"
                             width={200}
                             height={200}
-                            className="p-4 bg-white"
+                            className="p-4 bg-white rounded-[10px]"
                         />
                         <p className="mt-2 text-gray-50 py-4">{sitedata?.description?.slice(0, 435)}</p>
                     </div>
@@ -64,7 +69,7 @@ const Footer = ({ sitedata,servicedata,arn,socialmedialinks}) => {
                             {servicedata?.map((sub, index) => (
                                 <li className="mb-4" key={index}>
                                     {!sub.children || sub.children.length === 0 ? (
-                                        <Link href={sub.link} target="blank" className="hover:text-[var(--rv-primary)]"><p>{sub.name}</p></Link>
+                                        <Link href={`/services/${sub.link}`} target="blank" className="hover:text-[var(--rv-primary)]"><p>{sub.name}</p></Link>
                                     ) : (
                                         <ul className="">
                                             {sub.children.map((child, childIndex) => (
@@ -81,24 +86,28 @@ const Footer = ({ sitedata,servicedata,arn,socialmedialinks}) => {
                     <div className="text-gray-50">
                         <h4 className="mb-5 text-md font-bold">Quick Links</h4>
                         <ul className="">
-                            {quicklinks?.map((sub, index) => (
-                                <li className="mb-3" key={index}>
-                                    {/* Conditionally render title if there are no children */}
-                                    {!sub.children || sub.children.length === 0 ? (
-                                        <Link href={sub.link} target="blank" className="hover:text-[var(--rv-primary)]"><p>{sub.title}</p></Link>
-                                    ) : (
-                                        // If children exist, only render the children links
-                                        <ul className="">
-                                            {sub.children.map((child, childIndex) => (
-                                                <li key={childIndex} className="mb-1">
-                                                    <Link href={child.link} target="blank" className="hover:text-[var(--rv-primary)]"><p>{child.title}</p></Link>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
-                                </li>
-                            ))}
-                        </ul>
+  {quicklinks?.map((sub, index) => (
+    <li className="mb-3" key={index}>
+      {sub.download ? (
+        <a
+          href={sub.link}
+          download
+          className="hover:text-[var(--rv-primary)]"
+        >
+          <p>{sub.title}</p>
+        </a>
+      ) : (
+        <Link
+          href={sub.link}
+          target="blank"
+          className="hover:text-[var(--rv-primary)]"
+        >
+          <p>{sub.title}</p>
+        </Link>
+      )}
+    </li>
+  ))}
+</ul>
                     </div>
                     <div className="text-gray-50">
                         <h4 className="mb-5 text-md font-bold">Contact Us</h4>

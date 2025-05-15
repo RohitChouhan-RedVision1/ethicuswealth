@@ -45,13 +45,13 @@ export default function BseChartSection() {
                     <div className="w-full lg:w-1/2">
                         {/* <BseReturnChart data={graphData} /> */}
                         <img
-    src="/graph.png" // Replace this with your actual image path
+    src="/graph.jpg" // Replace this with your actual image path
     alt="Graph"
     className="w-full h-auto object-contain "
   />
                     </div>
                     <div className="w-full lg:w-1/2 bg-gradient-to-br from-[var(--rv-secondary)] via-[var(--rv-secondary)] to-[var(--rv-primary)] rounded-xl p-4 text-white">
-                        <div className="grid grid-cols-6 items-center gap-2 mb-3">
+                        <div className="grid grid-cols-6 items-center mb-3">
                             <svg
                                 version="1.1"
                                 id="fi_190411_3"
