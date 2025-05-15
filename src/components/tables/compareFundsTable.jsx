@@ -24,7 +24,7 @@ import {
 import { CaretSortIcon } from "@radix-ui/react-icons";
 
 const CompareFundsTable = ({ data }) => {
-  console.log(data)
+  // console.log(data)
   const data1 = data;
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);

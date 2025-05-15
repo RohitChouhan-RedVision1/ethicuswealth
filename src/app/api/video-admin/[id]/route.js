@@ -116,7 +116,7 @@ export async function PUT(req, { params }) {
         video.videoUrl = videoUrl || video.videoUrl;
         video.embedUrl = embedUrl || video.embedUrl;
 
-        console.log(video.embedUrl)
+        // console.log(video.embedUrl)
 
         // Save the updated testimonial
         await video.save();

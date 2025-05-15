@@ -64,7 +64,7 @@ export function InputForm({ postId }) {
   }, [postId]);
 
   const onSubmit = async (data) => {
-    console.log("data");
+    // console.log("data");
     setLoading(true);
     const formData = new FormData();
 

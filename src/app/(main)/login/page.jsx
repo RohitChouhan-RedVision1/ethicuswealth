@@ -28,7 +28,7 @@ const LoginPage = () => {
     const fetchSiteData = async () => {
       try {
         const res = await axios.get("/api/admin/site-settings");
-        console.log(res)
+        // console.log(res)
         if (res.status === 200 && res.data[0]) {
           setProvider((prev) => ({
             ...prev,

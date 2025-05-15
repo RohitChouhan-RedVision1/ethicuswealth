@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   const { arnNumber, pdfpath, axis, euin, euinAxis } = await request.json();
-  console.log(arnNumber, pdfpath, axis, euin, euinAxis)
+  // console.log(arnNumber, pdfpath, axis, euin, euinAxis)
   if (!arnNumber) {
     return new NextResponse(JSON.stringify({ error: 'ARN number is required.' }), {
       status: 400,

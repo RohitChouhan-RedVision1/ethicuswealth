@@ -6,7 +6,7 @@ import { FaFacebookF, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from "rea
 import { useEffect, useState } from "react";
 
 const Footer = ({ sitedata,servicedata,arn,socialmedialinks}) => {
-    console.log(socialmedialinks)
+    // console.log(socialmedialinks)
     const iconMap = {
   Facebook: <FaFacebookF className="text-[var(--rv-primary)]" />,
   Instagram: <FaInstagram className="text-[var(--rv-primary)]" />,

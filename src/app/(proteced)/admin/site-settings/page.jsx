@@ -23,7 +23,7 @@ import SocialMediaTable from "@/components/admin/SocialMedia/SocialMedialist";
 export function InputForm() {
   const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  console.log(selectedImage)
+  // console.log(selectedImage)
 
   const form = useForm({
     defaultValues: {
@@ -53,7 +53,7 @@ export function InputForm() {
             formData.append('image', selectedImage);
           }
       
-          console.log(data)
+          // console.log(data)
       const response = await axios.post("/api/admin/site-settings/", data);
       if (response.status === 201) {
         toast({

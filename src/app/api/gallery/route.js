@@ -67,7 +67,7 @@ export async function POST(req) {
         return NextResponse.json({ message: 'Data Aded successfully' }, { status: 201 });
     }
     catch (error) {
-        console.log(error)
+        // console.log(error)
         return NextResponse.json({ error: error }, { status: 500 });
     }
 

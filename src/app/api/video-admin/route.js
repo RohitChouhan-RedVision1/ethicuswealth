@@ -46,7 +46,7 @@ export async function POST(req) {
         const title = formData.get('title');
         const videoUrl = formData.get('videoUrl');
         const embedUrl = formData.get('embedUrl');
-        console.log(embedUrl)
+        // console.log(embedUrl)
         const a = await file.arrayBuffer();
         const buffer = Buffer.from(a)
         if (!file) {

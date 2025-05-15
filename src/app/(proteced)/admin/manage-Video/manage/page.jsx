@@ -56,7 +56,7 @@ const DataTableDemo = () => {
             setLoading(true);
             try {
                 const res = await axios.get("/api/video-admin/");
-                console.log(res.data)
+                // console.log(res.data)
                 if (res.status === 200) {
                     setData(res.data);
                 }

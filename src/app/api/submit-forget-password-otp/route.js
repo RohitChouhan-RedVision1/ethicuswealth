@@ -11,11 +11,11 @@ export async function POST(req) {
                 }
             }
         );
-        console.log(res?.data)
+        // console.log(res?.data)
         return NextResponse.json(res.data, { status: 201 });
     }
     catch (error) {
-        console.log(error)
+        // console.log(error)
         return NextResponse.json({ error: error }, { status: 500 });
     }
 

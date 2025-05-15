@@ -4,7 +4,7 @@ import React from 'react'
 import styles from './NfoCards.module.css';
 
 const NfoCards = ({ item, imageurl }) => {
-    console.log(item, imageurl)
+    // console.log(item, imageurl)
     return (
         <Link href={`blogs/${item.slug}`} className={styles.card}>
             <Image

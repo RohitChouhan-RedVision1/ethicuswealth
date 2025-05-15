@@ -10,7 +10,7 @@ export async function POST(req) {
   try {
     const body = await req.json();
     const { id, title, url } = body;
-    console.log(id,title,url)
+    // console.log(id,title,url)
 
     if (id) {
       // Update if ID exists

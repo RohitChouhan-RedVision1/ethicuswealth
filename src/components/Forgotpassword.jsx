@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 
 export default function ForgotPasswordModal({ isOpen, onClose,logintype }) {
   const [error, setError] = useState("");
-  console.log(logintype)
+  // console.log(logintype)
   const [mobileno, setMobileNo] = useState("");
   const [otp, setOtp] = useState("");
   const [otpField, setOtpField] = useState(false);

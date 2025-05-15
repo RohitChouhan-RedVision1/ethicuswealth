@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
 import styles from "./social.module.css"
 export default function SocialMediaSidebar({sitedata}) {
-  console.log(sitedata)
+  // console.log(sitedata)
   return (
     <div className={`${styles.social_midia_f}`}>
       <ul className="flex flex-col space-y-3">

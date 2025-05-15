@@ -10,7 +10,7 @@ LoadDB()
 
 export async function POST(request) {
     const { username, mobile, email, message,address } = await request.json()
-    console.log(username)
+    // console.log(username)
     // Basic validation
    
 
