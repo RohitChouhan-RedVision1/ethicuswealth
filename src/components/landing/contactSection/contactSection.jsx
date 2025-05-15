@@ -8,73 +8,6 @@ import HCaptcha from "@hcaptcha/react-hcaptcha";
 import ContactReusableForm from "./Contactreusableform";
 
 export default function ContactUsFormSection({ sitedata }) {
-  const [formData, setFormData] = useState({
-    username: "",
-    mobile: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [hcaptchaToken, setHcaptchaToken] = useState("");
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!hcaptchaToken) {
-      alert("Please complete the captcha verification.");
-      return;
-    }
-
-    setLoading(true);
-
-    const emailContent = "We’re excited to help you reach your financial goals.";
-    const emailData = {
-      to: formData.email,
-      subject: "Thank You for Your Enquiry!",
-      text: `Dear ${formData.username},\n\nWe sincerely appreciate your interest and the time you took to fill out our enquiry form. We have received your details, and our team will be in touch with you soon.\n\n${emailContent}`,
-    };
-
-    const senderData = {
-      to: sitedata?.email,
-      subject: "New Enquiry Received",
-      text: `New Enquiry:\n\nName: ${formData.username}\nEmail: ${formData.email}\nMobile: ${formData.mobile}\nSubject: ${formData.subject}\nMessage: ${formData.message}`,
-    };
-
-    try {
-      const res = await axios.post("/api/leads", formData);
-
-      if (res.status === 201) {
-        await axios.post("/api/email", emailData);
-        await axios.post("/api/email", senderData);
-
-        setSubmitted(true);
-        setFormData({
-          username: "",
-          mobile: "",
-          email: "",
-        //   subject: "",
-          message: "",
-        });
-        setHcaptchaToken("");
-      } else {
-        alert("Submission failed. Try again.");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div className="max-w-screen-xl mx-auto py-[30px] md:py-[60px]">
       <div
@@ -98,7 +31,7 @@ export default function ContactUsFormSection({ sitedata }) {
             align="start"
           />
 
-         <ContactReusableForm/>
+         <ContactReusableForm sitedata={sitedata}/>
         </div>
       </div>
     </div>
