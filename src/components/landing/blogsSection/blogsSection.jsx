@@ -9,7 +9,7 @@ import Link from "next/link";
 import { format } from 'date-fns';
 
 export default function BlogSection({blogs}) {
-    console.log(blogs)
+    // console.log(blogs)
     return (
         <div className={`${styles.blogContainer}`}>
             <div className=" max-w-screen-xl mx-auto">
@@ -28,7 +28,7 @@ export default function BlogSection({blogs}) {
                             alt={blogs[0].posttitle}
                             width={200}
                             height={200}
-                            className="w-full"
+                            className="w-full rounded-[30px]"
                             // className={styles.cardImageLarge}
                         />
                         <div className="flex flex-col justify-between py-1">

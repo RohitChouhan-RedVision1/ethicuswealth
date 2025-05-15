@@ -43,7 +43,7 @@ const Tickers = () => {
                                 >
                                     <span className="font-bold text-white text-sm whitespace-nowrap">{item?.indexName}</span>
                                     <span className="font-semibold text-gray-100 text-xs">{item?.figure}</span>
-                                  <div className='flex items-center gap-2 bg-gray-600  py-1 w-54 border rounded-md'>
+                                  <div className='flex items-center gap-2 bg-gray-800  p-1 w-54  rounded-md'>
                                   <span
                                         className={`font-bold text-xs flex justify-center items-center ${item?.diff_amount > 0 ? 'text-green-300' : 'text-red-500'}`}
                                     >

@@ -5,7 +5,7 @@ import styles from "./Hero.module.css";
 import Image from "next/image";
 
 export default function HeroSection({ sitedata }) {
-  const a = `Welcome to ${sitedata.websiteName}, your trusted financial companion in India. We understand that your financial journey is more than just numbers; it's a story of dreams, aspirations, and the legacy you want to leave behind. At ${sitedata.websiteName}, we are driven by the belief that everyone deserves a secure and prosperous future.`;
+  const a = `Welcome to ${sitedata.websiteName} where we believe that your financial journey is unique, and we are committed to guide you through every step. From building wealth to securing your future, we offer a range of solutions to help you achieve your goals and create the life you’ve always envisioned.`;
 
   return (
     <div className="max-w-screen-2xl mx-auto relative">
@@ -26,7 +26,7 @@ export default function HeroSection({ sitedata }) {
       <div className="mt-1">
         <div className="text-center max-w-6xl mx-auto space-y-2">
           <h1 className="text-anime-style-1 text-3xl md:text-4xl lg:text-5xl font-bold mb-5">
-            Diversify Your Future with Mutual Funds
+            Unlocking Your Path to Financial Freedom
           </h1>
           <p className="" data-aos="fade-up" data-aos-duration="600">
             {a}
@@ -34,9 +34,8 @@ export default function HeroSection({ sitedata }) {
           <div className="pt-6">
             <Link
               href={"/about-us"}
-              className="px-6 py-3 rounded-full bg-[var(--rv-secondary)] text-white"
             >
-              Know More
+              <button className="primarybutton">Know More</button>
             </Link>
           </div>
         </div>

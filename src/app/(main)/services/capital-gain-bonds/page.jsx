@@ -98,9 +98,9 @@ const CapitalGainBonds = () => {
             Don’t let capital gains taxes eat into your profits. Invest smartly in Capital Gain Bonds and enjoy both tax savings and stable returns.
           </p>
           <Link href="/contact-us">
-            <Button className="bg-[var(--rv-secondary)] hover:bg-[var(--rv-primary)] px-6 py-5 rounded-full text-lg">
+            <button className="primarybutton">
               Invest in 54EC Bonds
-            </Button>
+            </button>
           </Link>
         </div>
       </div>

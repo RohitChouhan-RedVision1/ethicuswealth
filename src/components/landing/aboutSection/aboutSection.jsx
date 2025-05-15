@@ -31,7 +31,7 @@ export default function AboutSection() {
         </div>
       </div>
       <div className={styles.textContent}>
-        <h3 className="font-semibold text-[var(--rv-secondary)] text-anime-style-2">
+        <h3 className="font-semibold text-white text-anime-style-2">
           ABOUT US
         </h3>
         <h2 className="font-semibold mb-3 text-anime-style-1">

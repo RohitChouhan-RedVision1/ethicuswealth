@@ -152,7 +152,7 @@ export default function ContactForm({ sitedata }) {
         />
         <button
           type="button"
-          className="bg-[var(--rv-secondary)] hover:bg-[var(--rv-primary)] px-6 py-3 rounded-full text-white "
+          className="primarybutton"
           onClick={refreshCaptcha}
         >
           Refresh
@@ -162,7 +162,7 @@ export default function ContactForm({ sitedata }) {
       <div>
         <button
           type="submit"
-          className="bg-[var(--rv-secondary)] hover:bg-[var(--rv-primary)] px-6 py-3 rounded-full text-white"
+          className="primarybutton"
           disabled={loading}
         >
           {loading ? "Submitting..." : "Submit"}

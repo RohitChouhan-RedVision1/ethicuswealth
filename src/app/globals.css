@@ -244,3 +244,33 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.primarybutton{
+  padding: 0.5rem 1.5rem; /* py-2 px-6 */
+  border-radius: 9999px;   /* rounded-full */
+  background-color: var(--rv-secondary);
+  color: white;
+  /* margin-left: 1rem;       ml-4 */
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.primarybutton:hover {
+  background-color: var(--rv-primary);
+}
+
+.secondarybutton{
+  padding: 0.5rem 1.5rem; /* py-2 px-6 */
+  border-radius: 9999px;   /* rounded-full */
+  background-color: var(--rv-primary);
+  color: white;
+  /* margin-left: 1rem;       ml-4 */
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.secondarybutton:hover {
+  background-color: var(--rv-secondary);
+}

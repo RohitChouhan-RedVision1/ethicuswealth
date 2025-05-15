@@ -98,9 +98,9 @@ const Debentures = () => {
             Looking for stable, periodic income with lower market risk? Debentures may be the right choice for your financial goals.
           </p>
           <Link href="/contact-us">
-            <Button className="bg-[var(--rv-secondary)] hover:bg-[var(--rv-primary)] px-6 py-5 rounded-full text-lg">
+             <button className="primarybutton">
               Start Investing in Debentures
-            </Button>
+            </button>
           </Link>
         </div>
       </div>

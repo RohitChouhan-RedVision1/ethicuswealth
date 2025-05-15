@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { FaRegCheckCircle } from "react-icons/fa";
 
 export async function generatemetadata() {
   return {
@@ -184,7 +185,7 @@ export default async function AboutUs() {
                 <div className="grid md:grid-cols-6 justify-center gap-5">
                   <div className="md:col-span-2">
                     <Image
-                      src="/images/founder1.jpg"
+                      src="/abhishekshah.jpg"
                       alt="Mr. ABHISHEK SHAH"
                       width={380}
                       height={380}
@@ -228,34 +229,40 @@ export default async function AboutUs() {
                     </p>
 
                     {/* Quick Bio */}
-                    <div className="mt-6">
+                   
+                  </div>
+                </div>
+                 <div className="">
                       <h4 className="text-xl font-semibold text-white mb-2">
                         Quick Bio
                       </h4>
                       <ul className="list-disc pl-5 space-y-2 text-gray-100">
-                        <li>
+                        <li className="flex items-start gap-2">
+                        <FaRegCheckCircle className="text-white text-2xl" />
                           CFP (FPSB - Financial Planning Standard Board, USA)
                         </li>
-                        <li>
+                        <li className="flex items-start gap-2">
+                        <FaRegCheckCircle className="text-white text-2xl" />
                           CFGP (AAFM - American Academy of Financial Management)
                         </li>
-                        <li>
-                          30+ Certification courses related to Financial Markets
-                          (BSE, NSE, AMFI, etc.)
+                        <li className="flex items-start gap-2">
+                        <FaRegCheckCircle className="text-white text-2xl" />
+                          30+ Certification courses related to Financial Markets (BSE, NSE, AMFI, etc.)
                         </li>
-                        <li>B.Com (South Gujarat University)</li>
-                        <li>
-                          Author of the book <em>"Mera Wealth Plan"</em>
+                        <li className="flex items-start gap-2">
+                        <FaRegCheckCircle className="text-white text-2xl" />
+                          B.Com (South Gujarat University)
                         </li>
-                        <li>
-                          Regular article writer on financial topics in
-                          Divyabhaskar, Gujarat Samachar, and Gujarat Guardian
-                          newspapers
+                        <li className="flex items-start gap-2">
+                        <FaRegCheckCircle className="text-white text-2xl" />
+                          Author of the book "Mera Wealth Plan"
+                        </li>
+                        <li className="flex items-start gap-2">
+                        <FaRegCheckCircle className="text-white text-2xl" />
+                          Regular article writer on financial topics in Divyabhaskar, Gujarat Samachar, and Gujarat Guardian newspapers
                         </li>
                       </ul>
                     </div>
-                  </div>
-                </div>
               </div>
 
               <div className="group bg-[var(--rv-primary)] p-8 rounded-xl shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
@@ -285,31 +292,37 @@ Financial Goals in a discipline manner.
                         Quick Bio
                       </h4>
                       <ul className="list-disc pl-5 space-y-2 text-gray-100">
-                        <li>
-                        CFGP (AAFM - American Academy of Financial Management)
+                        <li className="flex items-start gap-2">
+                        <FaRegCheckCircle className="text-white text-2xl" />
+                          AMFI Certified - NISM
                         </li>
-                        <li>
-                        AMFI Certified - NISM
+                          <li className="flex items-start gap-2">
+                        <FaRegCheckCircle className="text-white text-2xl" />
+                          CFGP (AAFM - American Academy of Financial Management)
                         </li>
-                        <li>
-                        IRDA Certified - NISM
+                          <li className="flex items-start gap-2">
+                        <FaRegCheckCircle className="text-white text-2xl" />
+                          IRDA Certified - NISM
                         </li>
-                        <li>Equity Fundamental and Technical Analysis</li>
-                        <li>
-                        Diploma In Information Technology (Gujarat Technological University)
+                          <li className="flex items-start gap-2">
+                        <FaRegCheckCircle className="text-white text-2xl" />
+                          Equity Fundamental and Technical Analysis
                         </li>
-                        <li>
-                          Regular article writer on financial topics in
-                          Divyabhaskar, Gujarat Samachar, and Gujarat Guardian
-                          newspapers
+                          <li className="flex items-start gap-2">
+                        <FaRegCheckCircle className="text-white text-2xl" />
+                          Diploma In Information Technology (Gujarat Technological University)
+                        </li>
+                          <li className="flex items-start gap-2">
+                        <FaRegCheckCircle className="text-white text-2xl" />
+                          Regular article writer on financial topics in Divyabhaskar, Gujarat Samachar, and Gujarat Guardian newspapers
                         </li>
                       </ul>
                     </div>
                   </div>
                   <div className="md:col-span-2 col-span-4">
                     <Image
-                      src="/images/founder2.webp" // Replace with actual image path
-                      alt="Nakul jain"
+                      src="/rubinahakim.jpg" // Replace with actual image path
+                      alt="rubinahakim"
                       width={300}
                       height={80}
                       className="rounded grayscale group-hover:grayscale-0 transition-all mr-4 "
@@ -339,9 +352,9 @@ Financial Goals in a discipline manner.
             possible.
           </p>
           <Link href="/contact-us">
-            <Button className="bg-[var(--rv-secondary)] hover:bg-[var(--rv-primary)] px-6 py-3 rounded-full ">
+             <button className="primarybutton">
               Get Started
-            </Button>
+            </button>
           </Link>
         </motion.section>
       </div>

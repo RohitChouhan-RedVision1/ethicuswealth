@@ -63,7 +63,7 @@ export default function Testimonials({testimonials}) {
                           </div>
                           <button
                             onClick={() => handleReadMore(item)}
-                            className="absolute bottom-0 right-0 text-[var(--rv-primary)] hover:underline bg-white px-2"
+                            className="absolute bottom-7 left-6 text-[var(--rv-primary)] hover:underlin"
                           >
                             Read More
                           </button>

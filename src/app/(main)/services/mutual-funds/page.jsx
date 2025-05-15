@@ -110,9 +110,9 @@ const MutualFunds = () => {
             Take control of your financial future with smart mutual fund investments. Whether you're new to investing or a seasoned pro, Contango Asset offers the right mix of funds to help you meet your goals.
           </p>
           <Link href="/contact-us">
-            <Button className="bg-[var(--rv-secondary)] hover:bg-[var(--rv-primary)] px-6 py-5 rounded-full text-lg">
+             <button className="primarybutton">
               Explore Funds Now
-            </Button>
+            </button>
           </Link>
         </div>
       </div>

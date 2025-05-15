@@ -102,9 +102,9 @@ const HealthInsurance = () => {
             Health is wealth—and protecting it shouldn't be delayed. Invest in a health insurance plan that provides quality care, financial coverage, and peace of mind for you and your family.
           </p>
           <Link href="/contact-us">
-            <Button className="bg-[var(--rv-secondary)] hover:bg-[var(--rv-primary)] px-6 py-5 rounded-full text-lg">
+             <button className="primarybutton">
               Get Covered Now
-            </Button>
+            </button>
           </Link>
         </div>
       </div>

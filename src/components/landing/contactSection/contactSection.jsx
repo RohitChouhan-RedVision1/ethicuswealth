@@ -116,20 +116,42 @@ export default function ContactUs({sitedata}) {
                             </div>
                             <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Message" className={styles.textarea} required></textarea>
 
-                            {/* CAPTCHA */}
-                            <div className="flex items-center space-x-4 my-4">
-                                <div className={`bg-[#FFD2D3] p-2 rounded-sm w-1/2`} >{captcha}</div>
-                                <button type="button" onClick={refreshCaptcha} className="bg-[#FFD2D3] p-2 rounded-sm w-1/2">Refresh</button>
-                            </div>
-                            <input type="text" value={userCaptcha} onChange={(e) => setUserCaptcha(e.target.value)} placeholder="Enter Captcha" className={styles.input} required />
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+  {/* Captcha Box */}
+  <div className="col-span-1  bg-[#FFD2D3] p-2 rounded-sm flex items-center justify-center">
+    {captcha}
+  </div>
 
-                            <Button
+  {/* Input (double width) */}
+  <input
+    type="text"
+    value={userCaptcha}
+    onChange={(e) => setUserCaptcha(e.target.value)}
+    placeholder="Enter Captcha"
+    className={`${styles.input} col-span-1`}
+    required
+  />
+
+  {/* Refresh Button */}
+  <button
+    type="button"
+    onClick={refreshCaptcha}
+    className="primarybutton"
+  >
+    Refresh
+  </button>
+
+
+</div>
+
+
+                            <button
                                 type="submit"
-                                className="bg-[var(--rv-primary)] hover:bg-[var(--rv-secondary)] px-6 py-3 rounded-full w-1/2 mt-4"
+                                className="secondarybutton  md:w-1/2 mt-2"
                                 disabled={loading}
                             >
                                 {loading ? "Sending..." : "Send Message"}
-                            </Button>
+                            </button>
                         </form>
                     )}
                 </div>

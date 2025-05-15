@@ -33,18 +33,24 @@ export default function BseChartSection() {
             <div className={styles.consultationContainer}>
                 {/* Heading and Description */}
                 <div className={styles.imageContainer}>
-                    <SectionHeading title="What Early Investing Can Do" variant="light" align="center" />
+                    <SectionHeading title="Right Asset Class" variant="light" align="center" />
                     <p className="mt-3 max-w-4xl text-lg mx-auto text-center">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.
+                        Equity market has outperformed all other investment avenues
+
                     </p>
                 </div>
 
                 {/* Chart and Info Section */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-14">
-                    <div className="col-span-1 md:col-span-2">
-                        <BseReturnChart data={graphData} />
+                <div className="flex flex-col lg:flex-row gap-4 mt-14">
+                    <div className="w-full lg:w-1/2">
+                        {/* <BseReturnChart data={graphData} /> */}
+                        <img
+    src="/graph.png" // Replace this with your actual image path
+    alt="Graph"
+    className="w-full h-auto object-contain "
+  />
                     </div>
-                    <div className="col-span-1 bg-gradient-to-br from-[var(--rv-secondary)] via-[var(--rv-secondary)] to-[var(--rv-primary)] rounded-xl p-6 md:p-8 text-white">
+                    <div className="w-full lg:w-1/2 bg-gradient-to-br from-[var(--rv-secondary)] via-[var(--rv-secondary)] to-[var(--rv-primary)] rounded-xl p-4 text-white">
                         <div className="grid grid-cols-6 items-center gap-2 mb-3">
                             <svg
                                 version="1.1"
@@ -72,7 +78,7 @@ export default function BseChartSection() {
                                     />
                                 </g>
                             </svg>
-                            <p className="mt-4 col-span-5 text-2xl">Here is the BSE data from initial to current date.</p>
+                            <p className="mt-4 col-span-5 text-2xl">Equity (Sensex TRI) has delivered the highest long-term returns at 14.43% CAGR, proving its strength as a wealth creator.</p>
                         </div>
                         <div className="grid grid-cols-6 items-center gap-2 mb-3">
                             <svg
@@ -101,7 +107,8 @@ export default function BseChartSection() {
                                     />
                                 </g>
                             </svg>
-                            <p className="mt-2 col-span-5 text-2xl">If you invested ₹1,00,000 10 years ago, its present value would be ₹9,93,993.</p>
+                            <p className="mt-2 col-span-5 text-2xl"> It has outperformed all traditional investment avenues like gold, PPF, and fixed deposits by a wide margin.
+</p>
                         </div>
                         <div className="grid grid-cols-6 items-center gap-2">
                             <svg
@@ -130,11 +137,11 @@ export default function BseChartSection() {
                                     />
                                 </g>
                             </svg>
-                            <p className="mt-2 col-span-5 text-2xl">The above calculation is made using the Lumpsum Calculator below.</p>
+                            <p className="mt-2 col-span-5 text-2xl">Investing in equities helps beat inflation and grow real wealth over time — essential for long-term financial goals.</p>
                         </div>
                     </div>
                 </div>
-                <h4 className="text-center my-8 text-[var(--rv-primary)]">Sensex Data from Inception to Present Date: A Comprehensive Overview </h4>
+                <h4 className="text-center my-8 text-[var(--rv-primary)]">Source: Gold & Silver – RBI Data as on Mar 2024 | Bank & Co. Deposites – RBI Data as on Sept 2023 | Inflation – RBI Data as on Mar 2024, Inflation data before 2012-13 is taken as per WPI Rate and From 2012-13 CPI rate is considered | Sensex TRI-ACE MF Data as on March 2024. </h4>
             </div>
         </div>
     );

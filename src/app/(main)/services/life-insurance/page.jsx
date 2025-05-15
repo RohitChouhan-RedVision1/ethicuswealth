@@ -102,9 +102,9 @@ const LifeInsurance = () => {
             Life is uncertain—but your family’s future doesn’t have to be. Invest in a life insurance plan that gives you peace of mind and financial security for those you love.
           </p>
           <Link href="/contact-us">
-            <Button className="bg-[var(--rv-secondary)] hover:bg-[var(--rv-primary)] px-6 py-5 rounded-full text-lg">
+             <button className="primarybutton">
               Get Insured Today
-            </Button>
+            </button>
           </Link>
         </div>
       </div>

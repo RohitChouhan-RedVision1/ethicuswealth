@@ -8,13 +8,15 @@ import BseChartSection from '@/components/landing/bsechartSection/bsechartSectio
 import SipCalculator from '@/components/landing/sipcalculatort';
 import Testimonials from '@/components/landing/testimonials';
 import AnimatedContent from '@/components/AnimatedContent';
-import { getLatestBlogs, getSiteData, getTestimonials } from '@/lib/functions';
+import { getLatestBlogs, getSiteData, getSocialMedia, getTestimonials } from '@/lib/functions';
 import SubscribCard from '@/components/partners/partners';
+import SocialMediaSidebar from '@/components/socialMedia/index';
 
 export default async function Page() {
      const sitedata = await getSiteData();
      const blogs=await getLatestBlogs();
      const testimonial=await getTestimonials()
+
 
   return (
     <AnimatedContent>
@@ -28,6 +30,8 @@ export default async function Page() {
         <Testimonials testimonials={testimonial}/>
         <BlogsSection blogs={blogs}/>
         <ContactUs sitedata={sitedata} />
+
+        <SocialMediaSidebar sitedata={sitedata} />
       </div>
     </AnimatedContent>
   );

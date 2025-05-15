@@ -45,8 +45,8 @@ export default function FeaturesSection() {
                     <p className={`${styles.paragraph} mt-10 text-xl max-w-6xl`}>
                         {sectionDescription}
                     </p>
-                    <Link href="/login" className={`${styles.knowMoreButton} mt-5`}>
-                        Know More
+                    <Link href="/login">
+                        <button className="primarybutton mt-5">Know More</button>
                     </Link>
 
                     <Image
@@ -54,7 +54,7 @@ export default function FeaturesSection() {
                                 alt={"mobile"}
                                 width={300}
                                 height={100}
-                                className={"md:ml-20"}
+
                             />
                 </div>
                 <div className={styles.cardsContainer}>

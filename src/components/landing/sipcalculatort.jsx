@@ -229,10 +229,10 @@ export default function SipCalculator({ siteData }) {
 
     return (
         <div className="max-w-screen-xl py-[30px] lg:py-[60px] mx-auto">
-            <div className="bg-[var(--rv-secondary)] md:px-10 py-10 rounded-2xl">
+            <div className="bg-[var(--rv-secondary)] md:px-10 py-10 rounded-[30px]">
                 <SectionHeading heading="SIP Calculator" title="Power of SIP" variant="dark" />
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4 pt-10">
-                    <div className="col-span-1 border border-gray-200 rounded-2xl bg-white px-7 py-4 md:py-0 flex flex-col justify-between">
+                    <div className="col-span-1 border border-gray-200 rounded-[30px] bg-white px-7 py-4 md:py-0 flex flex-col justify-between">
                         <div className="input-fields mt-5">
                             <div className="flex space-x-4 mb-8">
                                 <button
@@ -352,7 +352,7 @@ export default function SipCalculator({ siteData }) {
                             {isSubmitted ? (
                                 <div className="mb-5 flex justify-between">
                                     <div className="space-x-2">
-                                        <Button onClick={() => calculateSip()} className="bg-[var(--rv-secondary)] hover:bg-[var(--rv-primary)] px-6 py-3 rounded-full ">Calculate</Button>
+                                        <button onClick={() => calculateSip()} className="primarybutton ">Calculate</button>
                                     </div>
                                     <TooltipProvider>
                                         <Tooltip>
@@ -371,7 +371,7 @@ export default function SipCalculator({ siteData }) {
                                 :
                                 <Dialog open={isModalOpen} onOpenChange={() => handleModelOpen(true)}>
                                     <DialogTrigger asChild>
-                                        <Button className="bg-[var(--rv-secondary)] hover:bg-[var(--rv-primary)] px-6 py-3 rounded-full ">Calculate</Button>
+                                        <button className="primarybutton">Calculate</button>
                                     </DialogTrigger>
                                     <DialogContent className="sm:max-w-[425px]">
                                         <DialogHeader>
@@ -440,7 +440,7 @@ export default function SipCalculator({ siteData }) {
                                                 />
 
                                                 {/* Submit Button */}
-                                                <Button className="bg-[var(--rv-secondary)] hover:bg-[var(--rv-primary)] px-6 py-3 rounded-full " type="submit">{!loading ? "Submit" : "Loading..."}</Button>
+                                                <button className="primarybutton" type="submit">{!loading ? "Submit" : "Loading..."}</button>
                                             </form>
                                         </Form>
                                     </DialogContent>

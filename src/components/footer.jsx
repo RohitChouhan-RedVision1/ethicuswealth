@@ -5,8 +5,15 @@ import Image from "next/image";
 import { FaFacebookF, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 
-const Footer = ({ sitedata,servicedata,arn}) => {
-    console.log(arn)
+const Footer = ({ sitedata,servicedata,arn,socialmedialinks}) => {
+    console.log(socialmedialinks)
+    const iconMap = {
+  Facebook: <FaFacebookF className="text-[var(--rv-primary)]" />,
+  Instagram: <FaInstagram className="text-[var(--rv-primary)]" />,
+  Youtube: <FaYoutube className="text-[var(--rv-primary)]" />,
+  Linkedln: <FaLinkedin className="text-[var(--rv-primary)]" />,
+  Twitter: <FaXTwitter className="text-[var(--rv-primary)]" />
+};
     const quicklinks = [
         {
             title: "About Us",
@@ -127,37 +134,19 @@ const Footer = ({ sitedata,servicedata,arn}) => {
                     </div>
                 </div>
                 <div className="flex gap-x-3 justify-center">
-                   
-                        <Link target="_blank" href={`#`}>
-                            <h2 className="mb-6 text-4xl font-semibold text-white uppercase w-9 h-9 border rounded-full flex items-center justify-center hover:bg-blue-800">
-                                <FaFacebookF className={`text-xl w-5 h-5`} />
-                            </h2>
-                        </Link>
-                    
-                        <Link target="_blank" href={`#`}>
-                            <h2 className="mb-6 text-4xl font-semibold text-white uppercase w-9 h-9 border rounded-full flex items-center justify-center hover:bg-rose-800">
-                                <FaInstagram className={`text-xl w-5 h-5`} />
-                            </h2>
-                        </Link>
-                    
-                        <Link target="_blank" href={`#`}>
-                            <h2 className="mb-6 text-4xl font-semibold text-white uppercase w-9 h-9 border rounded-full flex items-center justify-center hover:bg-blue-900">
-                                <FaLinkedin className={`text-xl w-5 h-5`} />
-                            </h2>
-                        </Link>
-                   
-                        <Link target="_blank" href={`#`}>
-                            <h2 className="mb-6 text-4xl font-semibold text-white uppercase w-9 h-9 border rounded-full flex items-center justify-center hover:bg-stone-800">
-                                <FaXTwitter className={`text-xl w-5 h-5`} />
-                            </h2>
-                        </Link>
-                  
-                        <Link target="_blank" href={`#`}>
-                            <h2 className="mb-6 text-4xl font-semibold text-white uppercase w-9 h-9 border rounded-full flex items-center justify-center hover:bg-red-900">
-                                <FaYoutube className={`text-xl w-5 h-5`} />
-                            </h2>
-                        </Link>
-                </div>
+      {socialmedialinks
+        .filter((link) => !link.isHidden)
+        .map((link, index) => (
+          <Link key={index} target="_blank" href={link.url}>
+             
+            <div
+              className={`text-2xl font-semibold uppercase w-9 h-9 border bg-white rounded-full flex items-center justify-center `}
+            >
+              {iconMap[link.title] || <FaXTwitter className="text-[var(--rv-primary)]" />}
+            </div>
+          </Link>
+        ))}
+    </div>
                 <div className="text-gray-50 py-3 md:px-1 px-4 text-center">
                     <p className="py-1 text-center">{sitedata?.websiteName} is an AMFI Registered Mutual Fund Distributor.</p>
                     <p className="py-2 text-center">

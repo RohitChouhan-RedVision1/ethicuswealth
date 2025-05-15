@@ -39,7 +39,7 @@ export function Navbar({ services }) {
       const scrollingDown =
         currentScrollY > lastScrollY.current && currentScrollY > 50; // Changed this condition
   
-      console.log(currentScrollY);
+      // console.log(currentScrollY);
       setIsSticky(scrollingDown);
       lastScrollY.current = currentScrollY;
     };
@@ -113,7 +113,9 @@ export function Navbar({ services }) {
     >
       <div className="relative max-w-screen-xl flex items-center justify-between my-6 mx-auto px-4">
         <div className="">
+          <Link href="/">
           <Image src="/logo.webp" alt="logo" width={120} height={100} />
+          </Link>
         </div>
         <div className="flex-1 max-w-4xl hidden lg:block mx-auto ">
           {isSearchOpen ? (
@@ -210,7 +212,7 @@ export function Navbar({ services }) {
               <HoveredLink href="/blogs">Blogs</HoveredLink>
               <HoveredLink href="/about-us">About Us</HoveredLink>
               <HoveredLink href="/contact-us">Contact Us</HoveredLink>
-              {/* <button
+              <button
                 onClick={toggleSearch}
                 className="text-gray-600 hover:text-gray-800 focus:outline-none"
               >
@@ -228,17 +230,17 @@ export function Navbar({ services }) {
                     d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1112 3.5a7.5 7.5 0 014.65 13.15z"
                   />
                 </svg>
-              </button> */}
+              </button>
             </Menu>
           )}
         </div>
         <Link href="/login">
-        <button className="px-6 hidden lg:block py-2 rounded-full bg-[var(--rv-secondary)] text-white ml-4 hover:bg-[var(--rv-primary)]">
+        <button className="primarybutton hidden lg:block">
           Login
         </button></Link>
         <div className="flex items-center gap-4 lg:hidden">
           {/* Search Icon */}
-          {/* {!isSearchOpen ? (
+          {!isSearchOpen ? (
             <button onClick={() => setIsSearchOpen(true)}>
               <svg
                 className="w-6 h-6 text-gray-600"
@@ -329,7 +331,7 @@ export function Navbar({ services }) {
                 </div>
               </div>
             </div>
-          )} */}
+          )}
 
           {/* Menu Icon */}
           <button

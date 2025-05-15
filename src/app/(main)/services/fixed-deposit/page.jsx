@@ -134,9 +134,9 @@ const FixedDeposits = () => {
             and steadily.
           </p>
           <Link href="/contact-us">
-            <Button className="bg-[var(--rv-secondary)] hover:bg-[var(--rv-primary)] px-6 py-5 rounded-full text-lg">
+             <button className="primarybutton">
               Start Earning Securely
-            </Button>
+            </button>
           </Link>
         </div>
       </div>
